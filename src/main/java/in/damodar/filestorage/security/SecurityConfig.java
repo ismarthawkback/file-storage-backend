@@ -25,6 +25,7 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> 
                {
                 auth.requestMatchers("/hello").authenticated();
+                auth.requestMatchers("/division/add").permitAll();
                 auth.requestMatchers("/").permitAll();
                }
             );

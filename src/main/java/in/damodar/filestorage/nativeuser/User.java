@@ -16,11 +16,13 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.Builder;
 import lombok.Data;
 
 @Table(name = "users")
 @Entity
 @Data
+@Builder
 public class User implements UserDetails{
 
     @Id
@@ -40,4 +42,33 @@ public class User implements UserDetails{
         .stream()
         .map(contentType -> new SimpleGrantedAuthority("ACCESS_" + contentType)).toList();
     }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        // TODO Auto-generated method stub
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        // TODO Auto-generated method stub
+        return true;
+        // return UserDetails.super.isAccountNonLocked();
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        // TODO Auto-generated method stub
+        return true;
+        // return UserDetails.super.isCredentialsNonExpired();
+    }
+
+    @Override
+    public boolean isEnabled() {
+        // TODO Auto-generated method stub
+        return true;
+        // return UserDetails.super.isEnabled();
+    }
+
+    
 }
